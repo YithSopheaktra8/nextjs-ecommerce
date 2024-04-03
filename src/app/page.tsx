@@ -1,18 +1,23 @@
+"use client";
+
 import ProductCardComponent from "@/components/ProductCardComponent";
 import { BASE_URL } from "@/constants/constants";
 import { ProductType } from "@/utils/types/ProductType";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
-async function getProductList() {
-	const response = await fetch(`${BASE_URL}products/`);
-	const data = await response.json();
-	return data;
-}
+export default function Home() {
+	const [productList, setProductList] = useState<ProductType[]>([]);
 
-export default async function Home() {
-	const productList = await getProductList();
+	const getProductList = async () => {
+		const response = await fetch(`${BASE_URL}products/`);
+		const data = await response.json();
+		setProductList(data.results);
+	};
 
-	console.log(productList);
+	useEffect(() => {
+		getProductList();
+	}, []);
 
 	return (
 		<main>

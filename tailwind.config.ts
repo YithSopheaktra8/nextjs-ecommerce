@@ -17,7 +17,8 @@ const config: Config = {
     },
   },
   plugins: [
-    require("flowbite/plugin")
+    require("flowbite/plugin"),
+    require("tw-elements/plugin.cjs")
   ],
 };
 export default config;

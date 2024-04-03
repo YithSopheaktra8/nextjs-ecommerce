@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { Inter, Roboto } from "next/font/google";
 import "./globals.css";
 import UserNavbarComponent from "@/components/UserNavbarComponent";
-
+import { Suspense } from "react";
+import Loading from "./loading";
 
 const roboto = Roboto({
 	subsets: ["latin"],
 	display: "swap",
-	weight: ["100", "300","400", "500", "700", "900"],
+	weight: ["100", "300", "400", "500", "700", "900"],
 });
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={roboto.className}>
 				<UserNavbarComponent />
-				{children}
+				<Suspense fallback={<Loading />}>{children}</Suspense>
 			</body>
 		</html>
 	);
