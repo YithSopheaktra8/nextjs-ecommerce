@@ -20,9 +20,13 @@ export default function CreateProduct() {
 	const [productQuantity, setProductQuantity] = useState("");
 	const [productDescription, setProductDescription] = useState("");
 	const [imagePreview, setImagePreview] = useState<string | null>(null);
+	const [imageData, setImageData] = useState<File | null>(null);
 
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files?.[0];
+		if (event.target.files && event.target.files[0]) {
+			setImageData(event.target.files[0]);
+		}
 		if (file) {
 			const reader = new FileReader();
 			reader.onloadend = () => {
@@ -50,16 +54,27 @@ export default function CreateProduct() {
 
 	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		// // Ensure an image is selected
-		// if (!imageData) {
-		// 	alert("Please upload an image");
-		// 	return;
-		// }
 
+		const formdata = new FormData();
+		formdata.append("name", "ISTAD Store Poster");
+		if (imageData) {
+			formdata.append("image", imageData, imageData.name);
+		}
+
+		const requestOptions = {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${ACCESS_TOKEN}`,
+			},
+			body: formdata,
+			
+		};
+
+		const imageUrl = await fetch("https://store.istad.co/api/file/product/", requestOptions)
+			.then((response) => response.json())
+			.then((result) => result.image)
+			.catch((error) => console.error(error));
 		try {
-			
-			
-
 			const formData = {
 				category: {
 					name: "running shoes",
@@ -67,7 +82,7 @@ export default function CreateProduct() {
 				},
 				name: productName,
 				desc: productDescription,
-				image: "https://store.istad.co/media/product_images/keyboard.jpg",
+				image: imageUrl,
 				price: productPrice,
 				quantity: productQuantity,
 			};
@@ -79,10 +94,6 @@ export default function CreateProduct() {
 				body: JSON.stringify(formData),
 				headers: myHeaders,
 			})
-				.then((response) => response.json())
-				.then((data) => {
-					console.log("Success:", data);
-				})
 				.catch((error) => {
 					console.error("Error:", error);
 				});
@@ -96,7 +107,6 @@ export default function CreateProduct() {
 			<form
 				className="flex flex-col gap-4 border p-8 mt-10 w-[800px]"
 				onSubmit={handleSubmit}
-				encType="multipart/form-data"
 				method="POST">
 				<div>
 					<h2 className="text-center text-2xl">Create Product</h2>
