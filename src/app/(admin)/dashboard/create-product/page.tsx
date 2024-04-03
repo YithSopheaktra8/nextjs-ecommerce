@@ -20,8 +20,6 @@ export default function CreateProduct() {
 	const [productQuantity, setProductQuantity] = useState("");
 	const [productDescription, setProductDescription] = useState("");
 	const [imagePreview, setImagePreview] = useState<string | null>(null);
-    const [imageUrl, setImageUrl] = useState<string | null>(null);
-
 
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files?.[0];
@@ -59,6 +57,8 @@ export default function CreateProduct() {
 		// }
 
 		try {
+			
+			
 
 			const formData = {
 				category: {
@@ -67,7 +67,7 @@ export default function CreateProduct() {
 				},
 				name: productName,
 				desc: productDescription,
-				image: "imageUrl",
+				image: "https://store.istad.co/media/product_images/keyboard.jpg",
 				price: productPrice,
 				quantity: productQuantity,
 			};
