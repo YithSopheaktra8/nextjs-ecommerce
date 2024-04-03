@@ -12,6 +12,7 @@ import {
 	Textarea,
 	TextInput,
 } from "flowbite-react";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 export default function CreateProduct() {
@@ -21,6 +22,7 @@ export default function CreateProduct() {
 	const [productDescription, setProductDescription] = useState("");
 	const [imagePreview, setImagePreview] = useState<string | null>(null);
 	const [imageData, setImageData] = useState<File | null>(null);
+	const router = useRouter();
 
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files?.[0];
@@ -181,7 +183,9 @@ export default function CreateProduct() {
 				</div>
 				<button
 					className="bg-blue-500 text-white p-3 rounded-xl"
-					type="submit">
+					type="submit"
+					onClick={() => router.push("/dashboard")}
+					>
 					Create New
 				</button>
 			</form>
