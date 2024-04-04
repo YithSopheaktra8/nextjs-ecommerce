@@ -22,7 +22,6 @@ export default function UserTable() {
 		null
 	);
 	const [productId, setProductId] = useState(Number);
-	const router = useRouter();
 
 	const handleView = (product: ProductType) => {
 		setProductDetails(product);
@@ -79,7 +78,10 @@ export default function UserTable() {
 								? "text-red-500"
 								: "line-through"
 						}
-						onClick={() => handleDelete(row)}>
+						onClick={() => {
+							if (row.seller === "yith sopheaktra")
+								handleDelete(row);
+						}}>
 						Delete
 					</button>
 				</div>
@@ -93,14 +95,7 @@ export default function UserTable() {
 			headers: {
 				Authorization: `Bearer ${ACCESS_TOKEN}`,
 			},
-		})
-			.then((response) => response.json())
-			.then((data) => {
-				console.log("Success:", data);
-			})
-			.catch((error) => {
-				console.error("Error:", error);
-			});
+		});
 	}
 
 	useEffect(() => {
@@ -114,6 +109,9 @@ export default function UserTable() {
 
 	return (
 		<div className="mt-10">
+			<DataTable columns={columnsData} data={productList} 
+			/>
+
 			<Modal
 				dismissible
 				show={openModal}
@@ -146,7 +144,6 @@ export default function UserTable() {
 					</div>
 				</Modal.Body>
 			</Modal>
-			<DataTable columns={columnsData} data={productList} />
 
 			{/* open delete model */}
 			<Modal
