@@ -5,7 +5,6 @@
 import BrandComponent from "@/components/BrandComponent";
 import CarouselComponent from "@/components/CarouselComponent";
 import FeatureProductComponent from "@/components/FeatureProductComponent";
-import LoadingComponent from "@/components/LoadingComponent";
 import ProductCardComponent from "@/components/ProductCardComponent";
 import { BASE_URL } from "@/constants/constants";
 import { ProductType } from "@/utils/types/ProductType";
@@ -93,18 +92,19 @@ export default function Home() {
 					))}
 				</div>
 			</section>
-			<section className="my-20">
+			<section className="mt-20 mb-10 md:my-20">
 				<div className="mt-4 flex justify-center">
-					<button
-						onClick={handlePrevPage}
-						disabled={currentPage === 1}
-						className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-l">
-						Previous
-					</button>
+					{currentPage > 1 && (
+						<button
+							onClick={handlePrevPage}
+							className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-l">
+							Previous
+						</button>
+					)}
 					<button
 						onClick={handleNextPage}
 						className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-r">
-						Next
+						Next Page
 					</button>
 				</div>
 			</section>

@@ -5,6 +5,7 @@ import UserNavbarComponent from "@/components/UserNavbarComponent";
 import { Suspense } from "react";
 import Loading from "./loading";
 import FooterComponent from "@/components/FooterComponent";
+import ScrollToTopButton from "@/components/ScrollTopComponent";
 
 const roboto = Roboto({
 	subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({
 				<link rel="icon" href="/icons/icons.png" sizes="2" />
 				<UserNavbarComponent />
 				<Suspense fallback={<Loading />}>{children}</Suspense>
+				<ScrollToTopButton />
 				<FooterComponent />
 			</body>
 		</html>
