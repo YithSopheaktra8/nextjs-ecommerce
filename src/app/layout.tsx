@@ -25,7 +25,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={roboto.className}>
-			<link rel="icon" href="/icons/icons.png" sizes="2" />
+				<link rel="icon" href="/icons/icons.png" sizes="2" />
 				<UserNavbarComponent />
 				<Suspense fallback={<Loading />}>{children}</Suspense>
 				<FooterComponent />

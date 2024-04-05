@@ -80,7 +80,7 @@ export default function UserTable() {
 						}
 						onClick={() => {
 							if (row.seller === "yith sopheaktra")
-								handleDelete(row);
+							handleDelete(row);
 						}}>
 						Delete
 					</button>
@@ -109,8 +109,7 @@ export default function UserTable() {
 
 	return (
 		<div className="mt-10">
-			<DataTable columns={columnsData} data={productList} 
-			/>
+			<DataTable columns={columnsData} data={productList} />
 
 			<Modal
 				dismissible
