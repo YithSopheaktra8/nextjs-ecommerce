@@ -127,6 +127,7 @@ export default function UserTable() {
 	}
 
 	const handleUpdate = async () => {
+		console.log(productDetails)
 		const productId = editProductDetails?.id;
 
 		const myHeaders = new Headers();
@@ -167,7 +168,7 @@ export default function UserTable() {
 			},
 			name: editProductDetails?.name,
 			desc: editProductDetails?.desc,
-			image: imageUrl,
+			image: imageUrl && productDetails?.image,
 			price: editProductDetails?.price,
 			quantity: editProductDetails?.quantity,
 		};
@@ -207,7 +208,7 @@ export default function UserTable() {
 			setProductList(data.results);
 		}
 		fetchData();
-	}, []);
+	}, [productList]);
 
 	return (
 		<div className="mt-10">
@@ -410,8 +411,7 @@ export default function UserTable() {
 								if (file) {
 									const reader = new FileReader();
 									reader.onload = (event) => {
-										const imageDataUrl =
-											event.target?.result;
+										const imageDataUrl = event.target?.result;
 										setEditProductDetails((prevState) => ({
 											...prevState,
 											image: imageDataUrl as string, // Cast imageDataUrl to string

@@ -63,7 +63,7 @@ export default function Home() {
 						<p className="mt-4 text-base font-normal leading-7 text-gray-600">
 							category caters to different user preferences,
 							ranging from speed and security to customization and
-							developer tools to ensure that you have the best.
+							developer tools to ensure that you have the best web experience.
 						</p>
 					</div>
 					<BrandComponent />
