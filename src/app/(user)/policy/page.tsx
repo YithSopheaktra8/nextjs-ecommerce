@@ -1,187 +1,168 @@
-
 import React from "react";
-import Image from "next/image";
 
 export default function policy() {
 	return (
-		<div className="2xl:mx-auto 2xl:container py-12 lg:px-20 md:px-6 px-4">
-			<div className="w-full flex flex-col justify-center items-center">
-				<div className="flex flex-col justify-center items-center text-center space-y-4">
-					<h1 className="text-3xl lg:text-4xl font-semibold dark:text-white leading-9 md:leading-7 lg:leading-9 text-gray-800">
-						Frequently Asked Questions
-					</h1>
-					<p className="text-base leading-6 text-center dark:text-gray-400 text-gray-600 w-full md:w-10/12">
-						Here are few of the most frequently asked questions by
-						our valueable customers
+		<main className="p-5 md:p-[100px]">
+			<div className="bg-gray-100 rounded-lg">
+				<div className="container mx-auto md:px-10 py-8">
+					<h1 className="text-3xl font-bold mb-4">Privacy Policy</h1>
+
+					<p className="mb-4">
+						At KhStore, we are committed to providing our customers
+						with accurate, informative, and transparent product
+						descriptions to ensure a satisfying shopping experience.
+						Our description policy is designed to uphold the highest
+						standards of integrity, clarity, and reliability in
+						presenting product information.
+					</p>
+
+					<h2 className="text-2xl font-bold mb-2">
+						Accuracy and Detail
+					</h2>
+
+					<p className="mb-4">Accuracy and Detail information:</p>
+
+					<ul className="list-disc list-inside mb-4">
+						<li>
+							Every product description is meticulously crafted to
+							accurately represent the features, specifications,
+							and functionalities of the item.
+						</li>
+						<li>
+							We strive to provide comprehensive details,
+							including dimensions, materials, colors, sizes, and
+							any other pertinent information relevant to the
+							product.
+						</li>
+						<li>
+							Any claims or assertions about the products
+							performance, quality, or benefits are backed by
+							verifiable evidence and sourced from reputable
+							sources.
+						</li>
+					</ul>
+
+					<h2 className="text-2xl font-bold mb-2">
+						Clarity and Readability
+					</h2>
+
+					<p className="mb-4">Clarity and Readability reasons:</p>
+
+					<ul className="list-disc list-inside mb-4">
+						<li>
+							Descriptions are written in clear, concise language
+							that is easily understandable by all customers,
+							regardless of their level of expertise.
+						</li>
+						<li>
+							Descriptions are written in clear, concise language
+							that is easily understandable by all customers,
+							regardless of their level of expertise.
+						</li>
+						<li>
+							We avoid excessive use of marketing hyperbole or
+							exaggerated language that could potentially mislead
+							or deceive customers.
+						</li>
+					</ul>
+
+					<h2 className="text-2xl font-bold mb-2">
+						Visual Representation
+					</h2>
+
+					<p className="mb-4">Visual Representation:</p>
+					<ul className="list-disc list-inside mb-4">
+						<li>
+							High-quality images and multimedia content accompany
+							product descriptions to provide visual context and
+							enhance understanding.
+						</li>
+						<li>
+							Images accurately depict the product from multiple
+							angles, showcasing its appearance, features, and
+							functionality.
+						</li>
+						<li>
+							We ensure that the visual representation aligns with
+							the written description, reinforcing the accuracy
+							and reliability of the information provided.
+						</li>
+					</ul>
+
+					<h2 className="text-2xl font-bold mb-2">
+						Transparency and Honesty
+					</h2>
+
+					<p className="mb-4">Transparency and Honesty:</p>
+
+					<p className="mb-4">
+						We are transparent about any limitations, shortcomings,
+						or potential drawbacks of the product, ensuring
+						customers make informed purchasing decisions.
+					</p>
+
+					<h2 className="text-2xl font-bold mb-2">
+						Quality Assurance
+					</h2>
+
+					<p className="mb-4">
+						Our team conducts regular reviews and updates of product
+						descriptions to ensure they remain accurate, relevant,
+						and up-to-date.We adhere to industry best practices and
+						guidelines for e-commerce product descriptions,
+						continually seeking opportunities for
+						improvement.Customer feedback and inquiries regarding
+						product descriptions are actively monitored and
+						addressed promptly to maintain the highest standards of
+						quality and customer satisfaction.
+					</p>
+
+					<h2 className="text-2xl font-bold mb-2">
+						Controlling Your Personal Information
+					</h2>
+
+					<p className="mb-4">
+						You may choose to restrict the collection or use of your
+						personal information in the following ways:
+					</p>
+
+					<ul className="list-disc list-inside mb-4">
+						<li>
+							If you have previously agreed to us using your
+							personal information for direct marketing purposes,
+							you may change your mind at any time by writing to
+							or emailing us at [email protected]
+						</li>
+						<li>
+							We will not sell, distribute, or lease your personal
+							information to third parties unless we have your
+							permission or are required by law to do so. We may
+							use your personal information to send you
+							promotional information about third parties which we
+							think you may find interesting if you tell us that
+							you wish this to happen.
+						</li>
+						<li>
+							You may request details of personal information
+							which we hold about you. If you would like a copy of
+							the information held on you, please write to [Your
+							Company Name, Address, City, State, Zip Code] or
+							email [email protected]
+						</li>
+						<li>
+							If you believe that any information we are holding
+							on you is incorrect or incomplete, please write to
+							or email us as soon as possible at the above
+							address. We will promptly correct any information
+							found to be incorrect.
+						</li>
+					</ul>
+
+					<p className="mb-4">
+						This privacy policy is subject to change without notice.
 					</p>
 				</div>
-
-				<div className="grid grid-cols-1 sm:grid-cols-2 w-full lg:grid-cols-3 xl:grid-cols-6 justify-items-around gap-x-6 gap-y-6 xl:gap-y-0 xl:gap-x-8 mt-10">
-					<button className="dark:focus:border-white w-full focus:outline-none border dark:bg-gray-800 focus:border-gray-800 border-transparent bg-gray-50 flex justify-center items-center flex-col text-center py-10 px-12 space-y-6">
-						<Image
-							className="dark:hidden"
-							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/ecom-faq-3-svg1.svg"
-							alt="Shipping"
-							width={100}
-							height={100}
-						/>
-						<Image
-							className="hidden dark:block"
-							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/ecom-faq-3-svg1dark.svg"
-							alt="Shipping"
-							width={100}
-							height={100}
-						/>
-						<p className="text-xl font-medium leading-5 dark:text-white text-gray-800">
-							Shipping
-						</p>
-					</button>
-					<button className="dark:focus:border-white w-full focus:outline-none border dark:bg-gray-800 focus:border-gray-800 border-transparent bg-gray-50 flex justify-center items-center flex-col text-center py-10 px-12 space-y-6">
-						<Image
-							className="dark:hidden"
-							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/ecom-faq-3-svg2.svg"
-							alt="Payment"
-							width={100}
-							height={100}
-						/>
-						<Image
-							className="hidden dark:block"
-							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-3-svg2dark.svg"
-							alt="Payment"
-							width={100}
-							height={100}
-						/>
-						<p className="text-xl font-medium leading-5 dark:text-white text-gray-800">
-							Payment
-						</p>
-					</button>
-					<button className="dark:focus:border-white w-full focus:outline-none border dark:bg-gray-800 focus:border-gray-800 border-transparent bg-gray-50 flex justify-center items-center flex-col text-center py-10 px-12 space-y-6">
-						<Image
-							className="dark:hidden"
-							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/89gbwe.png"
-							alt="Account"
-							width={100}
-							height={100}
-						/>
-						<Image
-							className="hidden dark:block"
-							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-3-svg3dark.svg"
-							alt="Account"
-							width={100}
-							height={100}
-						/>
-						<p className="text-xl font-medium leading-5 dark:text-white text-gray-800">
-							Account
-						</p>
-					</button>
-					<button className="dark:focus:border-white w-full focus:outline-none border dark:bg-gray-800 focus:border-gray-800 border-transparent bg-gray-50 flex justify-center items-center flex-col text-center py-10 px-12 space-y-6">
-						<Image
-							className="dark:hidden"
-							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/trwvghy.png"
-							alt="Products"
-							width={100}
-							height={100}
-						/>
-						<Image
-							className="hidden dark:block"
-							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-3-svg4dark.svg"
-							alt="Products"
-							width={100}
-							height={100}
-						/>
-						<p className="text-xl font-medium leading-5 dark:text-white text-gray-800">
-							Products
-						</p>
-					</button>
-					<button className="dark:focus:border-white w-full focus:outline-none border dark:bg-gray-800 focus:border-gray-800 border-transparent bg-gray-50 flex justify-center items-center flex-col text-center py-10 px-12 space-y-6">
-						<Image
-							className="dark:hidden"
-							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/m23fg.png"
-							alt="Return Policy"
-							width={100}
-							height={100}
-						/>
-						<Image
-							className="hidden dark:block"
-							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-3-svg5dark.svg"
-							alt="Return Policy"
-							width={100}
-							height={100}
-						/>
-						<p className="text-xl w-40 font-medium leading-5 dark:text-white text-gray-800">
-							Return Policy
-						</p>
-					</button>
-					<button className="dark:focus:border-white w-full focus:outline-none border dark:bg-gray-800 focus:border-gray-800 border-transparent bg-gray-50 flex justify-center items-center flex-col text-center py-10 px-12 space-y-6">
-						<Image
-							className="dark:hidden"
-							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/vadd.png"
-							alt="Contact"
-							width={100}
-							height={100}
-						/>
-						<Image
-							className="hidden dark:block"
-							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-3-svg6dark.svg"
-							alt="Contact"
-							width={100}
-							height={100}
-						/>
-						<p className="text-xl w-40 font-medium leading-5 dark:text-white text-gray-800">
-							Contact
-						</p>
-					</button>
-				</div>
-
-				<div className="mt-16 flex justify-start flex-col items-start w-full text-left space-y-8">
-					<div className="flex justify-start items-start flex-col text-left w-full xl:w-8/12">
-						<h3 className="text-xl font-medium leading-7 dark:text-white md:leading-5 text-left text-gray-800">
-							How long does it take for my package to arrive?
-						</h3>
-						<p className="mt-6 text-base leading-6 dark:text-gray-400 text-gray-600">
-							For sterling silver items, your order will be
-							delivered within 7 to 10 business days, including
-							production and delivery, after you place an order.
-						</p>
-						<br />
-						<p className="text-base leading-6 dark:text-gray-400 text-gray-600">
-							For sterling silver items, your order will be
-							delivered within 7 to 10 business days, including
-							production and delivery, after you place an order.
-						</p>
-					</div>
-					<hr className="border border-gray-100 w-full" />
-					<div className="flex justify-start items-start flex-col text-left w-full xl:w-8/12">
-						<h3 className="text-xl font-medium leading-7 dark:text-white md:leading-5 text-left text-gray-800">
-							Where is my order?
-						</h3>
-						<p className="mt-6 text-base leading-6 dark:text-gray-400 text-gray-600">
-							Remeber you can query the staus of your oders any
-							time in My orders in the My aacount section.l if you
-							are not resigered at Mango.com, you can access
-							dierectly in the Orders section. In this cause, you
-							will have enter your em-mail address and order
-							number.
-						</p>
-						<br />
-						<p className="text-base leading-6 dark:text-gray-400 text-gray-600">
-							What is more, when your order leaves our
-							wharehouses, we will send you an e-mail.
-						</p>
-					</div>
-					<hr className="border border-gray-100 w-full" />
-					<div className="flex justify-start items-start flex-col text-left w-full xl:w-8/12">
-						<h3 className="text-xl font-medium leading-7 dark:text-white md:leading-5 text-left text-gray-800">
-							Can I cancel or change my Order?
-						</h3>
-						<p className="mt-6 text-base leading-6 dark:text-gray-400 text-gray-600">
-							Yes, you can change or cancel your order within the
-							first 10 days of your order placement.
-						</p>
-					</div>
-					<hr className="border border-gray-100 w-full" />
-				</div>
 			</div>
-		</div>
+		</main>
 	);
 }

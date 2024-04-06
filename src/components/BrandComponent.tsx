@@ -1,9 +1,8 @@
-
 import React from "react";
 
 export default function BrandComponent() {
 	return (
-		<div className="container mx-auto md:px-6">
+		<div className="px-3 mx-auto  md:px-6">
 			<div
 				className="h-64 rounded-md overflow-hidden bg-cover bg-center"
 				style={{
