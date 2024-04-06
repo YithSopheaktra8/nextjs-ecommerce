@@ -1,15 +1,18 @@
-/* eslint-disable @next/next/no-img-element */
+
 import React from "react";
+import Image from "next/image";
 
 export default function FeatureProductComponent() {
 	return (
 		<div className="grid grid-cols-2 gap-6 mt-10 lg:mt-16 lg:gap-4 lg:grid-cols-4">
 			<div className="relative group">
 				<div className="overflow-hidden aspect-w-1 aspect-h-1">
-					<img
+					<Image
 						className="object-cover w-full h-full transition-all duration-300 group-hover:scale-125"
 						src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/item-cards/4/product-1.png"
-						alt=""
+						alt="Speaker"
+						width={300}
+						height={300}
 					/>
 				</div>
 				<div className="absolute left-3 top-3">
@@ -80,10 +83,12 @@ export default function FeatureProductComponent() {
 
 			<div className="relative group">
 				<div className="overflow-hidden aspect-w-1 aspect-h-1">
-					<img
+					<Image
 						className="object-cover w-full h-full transition-all duration-300 group-hover:scale-125"
 						src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/item-cards/4/product-2.png"
-						alt=""
+						alt="Apple smart wacth 6"
+						width={300}
+						height={300}
 					/>
 				</div>
 				<div className="flex items-start justify-between mt-4 space-x-4">
@@ -149,10 +154,12 @@ export default function FeatureProductComponent() {
 
 			<div className="relative group">
 				<div className="overflow-hidden aspect-w-1 aspect-h-1">
-					<img
+					<Image
 						className="object-cover w-full h-full transition-all duration-300 group-hover:scale-125"
 						src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/item-cards/4/product-3.png"
-						alt=""
+						alt="BeyLob 90 Speaker"
+						width={300}
+						height={300}
 					/>
 				</div>
 				<div className="absolute left-3 top-3">
@@ -223,10 +230,12 @@ export default function FeatureProductComponent() {
 
 			<div className="relative group">
 				<div className="overflow-hidden aspect-w-1 aspect-h-1">
-					<img
+					<Image
 						className="object-cover w-full h-full transition-all duration-300 group-hover:scale-125"
 						src="https://cdn.rareblocks.xyz/collection/clarity-ecommerce/images/item-cards/4/product-4.png"
-						alt=""
+						alt="Matino 75 Bluetooth"
+						width={300}
+						height={300}
 					/>
 				</div>
 				<div className="flex items-start justify-between mt-4 space-x-4">

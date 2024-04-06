@@ -1,7 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
+
 "use client";
 import { usePathname } from "next/navigation";
 import React from "react";
+import Image from "next/image";
 
 export default function FooterComponent() {
 	const pathName = usePathname();
@@ -16,10 +17,11 @@ export default function FooterComponent() {
 								aria-label="Go home"
 								title="Company"
 								className="inline-flex items-center">
-								<img
+								<Image
 									src="/icons/icons.png"
 									alt="store"
 									width={100}
+									height={100}
 								/>
 								<span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
 									KhStore

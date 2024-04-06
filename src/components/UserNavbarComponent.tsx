@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import AdminNavbarComponent from "./AdminNavbarComponent";
 import { Navbar } from "flowbite-react";
 import { useRouter } from "next/navigation";
-
+import Image from "next/image";
 export default function UserNavbarComponent() {
 	const router = useRouter();
 	const pathName = usePathname();
@@ -20,10 +20,12 @@ export default function UserNavbarComponent() {
 		<>
 			<Navbar fluid rounded>
 				<Navbar.Brand as={Link} href="/">
-					<img
+					<Image
 						src="/icons/icons.png"
 						className="mr-3 h-6 sm:h-9"
-						alt="Flowbite React Logo"
+						alt="KhStore Logo"
+						width={100}
+						height={100}
 					/>
 					<span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white"></span>
 				</Navbar.Brand>

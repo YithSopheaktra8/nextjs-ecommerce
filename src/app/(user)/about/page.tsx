@@ -1,5 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
+
 import React from "react";
+import Image from "next/image";
 
 export default function about() {
 	return (
@@ -21,20 +22,26 @@ export default function about() {
 			</div>
 
 			<div className="lg:mt-14 sm:mt-10 mt-12">
-				<img
+				<Image
 					className="lg:block hidden w-full"
 					src="https://i.ibb.co/GvwJnvn/Group-736.png"
 					alt="Group of people Chilling"
+					width={500}
+					height={500}
 				/>
-				<img
+				<Image
 					className="lg:hidden sm:block hidden w-full"
 					src="https://i.ibb.co/5sZTmHq/Rectangle-116.png"
 					alt="Group of people Chilling"
+					width={500}
+					height={500}
 				/>
-				<img
+				<Image
 					className="sm:hidden block w-full"
 					src="https://i.ibb.co/zSxXJGQ/Rectangle-122.png"
 					alt="Group of people Chilling"
+					width={500}
+					height={500}
 				/>
 			</div>
 
@@ -64,20 +71,26 @@ export default function about() {
 					</p>
 				</div>
 				<div className="lg:flex items-center w-full lg:w-1/2">
-					<img
+					<Image
 						className="lg:block hidden w-full"
 						src="https://i.ibb.co/2kxWpNm/Group-740.png"
 						alt="people discussing on board"
+						width={500}
+						height={500}
 					/>
-					<img
+					<Image
 						className="lg:hidden sm:block hidden w-full h-3/4"
 						src="https://i.ibb.co/ZLgK3NQ/Group-788.png"
 						alt="people discussing on board"
+						width={500}
+						height={500}
 					/>
-					<img
+					<Image
 						className="sm:hidden block w-full"
 						src="https://i.ibb.co/9g2R7Xr/Group-803.png"
 						alt="people discussing on board"
+						width={500}
+						height={500}
 					/>
 				</div>
 			</div>

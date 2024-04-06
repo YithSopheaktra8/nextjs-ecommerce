@@ -1,4 +1,5 @@
-/* eslint-disable @next/next/no-img-element */
+
+
 "use client";
 
 import { ACCESS_TOKEN, BASE_URL } from "@/constants/constants";
@@ -11,6 +12,7 @@ import {
 } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import Image from "next/image";
 
 export default function CreateProduct() {
 	const [productName, setProductName] = useState("");
@@ -169,10 +171,12 @@ export default function CreateProduct() {
 					/>
 					{imagePreview && (
 						<div className="mt-5">
-							<img
+							<Image
 								src={imagePreview}
 								alt="Preview"
 								className="max-w-[150px] rounded-md"
+								width={150}
+								height={150}
 							/>
 						</div>
 					)}

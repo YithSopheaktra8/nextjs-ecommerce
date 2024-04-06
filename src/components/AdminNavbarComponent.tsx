@@ -1,6 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
+
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 
 export default function AdminNavbarComponent() {
 	return (
@@ -11,10 +12,12 @@ export default function AdminNavbarComponent() {
 						as={"/"}
 						href="#"
 						className="flex items-center space-x-3 rtl:space-x-reverse">
-						<img
+						<Image
 							src="/icons/icons.png"
 							className="h-8"
-							alt="Flowbite Logo"
+							alt="KhStore Logo"
+							width={32}
+							height={32}
 						/>
 						<span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
 							STORE

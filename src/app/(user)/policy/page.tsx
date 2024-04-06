@@ -1,5 +1,6 @@
-/* eslint-disable @next/next/no-img-element */
+
 import React from "react";
+import Image from "next/image";
 
 export default function policy() {
 	return (
@@ -17,90 +18,114 @@ export default function policy() {
 
 				<div className="grid grid-cols-1 sm:grid-cols-2 w-full lg:grid-cols-3 xl:grid-cols-6 justify-items-around gap-x-6 gap-y-6 xl:gap-y-0 xl:gap-x-8 mt-10">
 					<button className="dark:focus:border-white w-full focus:outline-none border dark:bg-gray-800 focus:border-gray-800 border-transparent bg-gray-50 flex justify-center items-center flex-col text-center py-10 px-12 space-y-6">
-						<img
+						<Image
 							className="dark:hidden"
 							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/ecom-faq-3-svg1.svg"
 							alt="Shipping"
+							width={100}
+							height={100}
 						/>
-						<img
+						<Image
 							className="hidden dark:block"
 							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/ecom-faq-3-svg1dark.svg"
 							alt="Shipping"
+							width={100}
+							height={100}
 						/>
 						<p className="text-xl font-medium leading-5 dark:text-white text-gray-800">
 							Shipping
 						</p>
 					</button>
 					<button className="dark:focus:border-white w-full focus:outline-none border dark:bg-gray-800 focus:border-gray-800 border-transparent bg-gray-50 flex justify-center items-center flex-col text-center py-10 px-12 space-y-6">
-						<img
+						<Image
 							className="dark:hidden"
 							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/ecom-faq-3-svg2.svg"
 							alt="Payment"
+							width={100}
+							height={100}
 						/>
-						<img
+						<Image
 							className="hidden dark:block"
 							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-3-svg2dark.svg"
 							alt="Payment"
+							width={100}
+							height={100}
 						/>
 						<p className="text-xl font-medium leading-5 dark:text-white text-gray-800">
 							Payment
 						</p>
 					</button>
 					<button className="dark:focus:border-white w-full focus:outline-none border dark:bg-gray-800 focus:border-gray-800 border-transparent bg-gray-50 flex justify-center items-center flex-col text-center py-10 px-12 space-y-6">
-						<img
+						<Image
 							className="dark:hidden"
 							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/89gbwe.png"
 							alt="Account"
+							width={100}
+							height={100}
 						/>
-						<img
+						<Image
 							className="hidden dark:block"
 							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-3-svg3dark.svg"
 							alt="Account"
+							width={100}
+							height={100}
 						/>
 						<p className="text-xl font-medium leading-5 dark:text-white text-gray-800">
 							Account
 						</p>
 					</button>
 					<button className="dark:focus:border-white w-full focus:outline-none border dark:bg-gray-800 focus:border-gray-800 border-transparent bg-gray-50 flex justify-center items-center flex-col text-center py-10 px-12 space-y-6">
-						<img
+						<Image
 							className="dark:hidden"
 							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/trwvghy.png"
 							alt="Products"
+							width={100}
+							height={100}
 						/>
-						<img
+						<Image
 							className="hidden dark:block"
 							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-3-svg4dark.svg"
 							alt="Products"
+							width={100}
+							height={100}
 						/>
 						<p className="text-xl font-medium leading-5 dark:text-white text-gray-800">
 							Products
 						</p>
 					</button>
 					<button className="dark:focus:border-white w-full focus:outline-none border dark:bg-gray-800 focus:border-gray-800 border-transparent bg-gray-50 flex justify-center items-center flex-col text-center py-10 px-12 space-y-6">
-						<img
+						<Image
 							className="dark:hidden"
 							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/m23fg.png"
 							alt="Return Policy"
+							width={100}
+							height={100}
 						/>
-						<img
+						<Image
 							className="hidden dark:block"
 							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-3-svg5dark.svg"
 							alt="Return Policy"
+							width={100}
+							height={100}
 						/>
 						<p className="text-xl w-40 font-medium leading-5 dark:text-white text-gray-800">
 							Return Policy
 						</p>
 					</button>
 					<button className="dark:focus:border-white w-full focus:outline-none border dark:bg-gray-800 focus:border-gray-800 border-transparent bg-gray-50 flex justify-center items-center flex-col text-center py-10 px-12 space-y-6">
-						<img
+						<Image
 							className="dark:hidden"
 							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/vadd.png"
 							alt="Contact"
+							width={100}
+							height={100}
 						/>
-						<img
+						<Image
 							className="hidden dark:block"
 							src="https://tuk-cdn.s3.amazonaws.com/can-uploader/faq-3-svg6dark.svg"
 							alt="Contact"
+							width={100}
+							height={100}
 						/>
 						<p className="text-xl w-40 font-medium leading-5 dark:text-white text-gray-800">
 							Contact

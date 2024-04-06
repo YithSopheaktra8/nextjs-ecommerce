@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import {
@@ -72,7 +71,12 @@ export default function UserTable() {
 		{
 			name: "Image",
 			selector: (row): any => (
-				<img src={row.image} alt={row.name} width={650} />
+				<Image
+					src={row.image}
+					alt={row.name}
+					width={500}
+					height={500}
+				/>
 			),
 		},
 		{
@@ -156,7 +160,7 @@ export default function UserTable() {
 			.catch((error) => console.error(error));
 
 		const formData = {
-			id : editProductDetails?.id,
+			id: editProductDetails?.id,
 			category: {
 				name: editProductDetails?.category,
 				icon: "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1693342954-rincon-3-64ee5ca62e001.jpg?crop=1xw:1xh;center,top&resize=980:*",
@@ -433,11 +437,13 @@ export default function UserTable() {
 
 						{/* Display image preview */}
 						{editProductDetails && editProductDetails.image && (
-							<img
+							<Image
 								src={editProductDetails.image}
 								alt="Preview"
 								className="mb-4 rounded-lg"
 								style={{ maxWidth: "100%", height: "auto" }}
+								width={500}
+								height={500}
 							/>
 						)}
 					</form>
