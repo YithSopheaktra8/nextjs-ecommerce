@@ -78,18 +78,18 @@ export default function UserTable() {
 		{
 			name: "Action",
 			selector: (row): any => (
-				<div className="gap-5 flex">
+				<div className="gap-3 flex">
 					<button
-						className="text-green-500"
+						className="text-white bg-green-500 p-3 rounded-lg font-semibold hover:bg-green-600"
 						onClick={() => handleView(row)}>
 						View
 					</button>
 					<button
-						className={
+						className={`text-white p-3 rounded-lg font-semibold  ${
 							row.seller === "yith sopheaktra"
-								? "text-blue-500"
-								: "line-through"
-						}
+								? "bg-blue-500 hover:bg-blue-700"
+								: "bg-gray-300 line-through text-black cursor-not-allowed"
+						}`}
 						onClick={() => {
 							if (row.seller === "yith sopheaktra")
 								handleEdit(row);
@@ -97,11 +97,11 @@ export default function UserTable() {
 						Edit
 					</button>
 					<button
-						className={
+						className={`text-white p-3 rounded-lg font-semibold  ${
 							row.seller === "yith sopheaktra"
-								? "text-red-500"
-								: "line-through"
-						}
+								? "bg-red-500 hover:bg-red-700"
+								: "bg-gray-300 line-through text-black cursor-not-allowed"
+						}`}
 						onClick={() => {
 							if (row.seller === "yith sopheaktra")
 								handleDelete(row);
@@ -150,11 +150,13 @@ export default function UserTable() {
 		const imageUrl = await fetch(
 			"https://store.istad.co/api/file/product/",
 			requestOptions
-		).then((response) => response.json())
+		)
+			.then((response) => response.json())
 			.then((result) => result.image)
 			.catch((error) => console.error(error));
 
 		const formData = {
+			id : editProductDetails?.id,
 			category: {
 				name: editProductDetails?.category,
 				icon: "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1693342954-rincon-3-64ee5ca62e001.jpg?crop=1xw:1xh;center,top&resize=980:*",
