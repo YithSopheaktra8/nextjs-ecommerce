@@ -22,6 +22,7 @@ export default function CreateProduct() {
 	const [imagePreview, setImagePreview] = useState<string | null>(null);
 	const [imageData, setImageData] = useState<File | null>(null);
 	const router = useRouter();
+	const notify = (e : string) => {e}
 
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files?.[0];
@@ -184,7 +185,10 @@ export default function CreateProduct() {
 				<button
 					className="bg-blue-500 text-white p-3 rounded-xl"
 					type="submit"
-					onClick={() => router.push("/dashboard")}>
+					onClick={() => {
+						router.push("/dashboard")
+						notify("Product created successfully")
+					}}>
 					Create New
 				</button>
 			</form>

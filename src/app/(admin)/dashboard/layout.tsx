@@ -1,4 +1,6 @@
 import SidebarComponent from "@/components/SidebarComponent";
+import { Slide, ToastContainer, Zoom } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function RootLayout({
 	children,
@@ -9,6 +11,13 @@ export default function RootLayout({
 		<div className="flex">
 			<SidebarComponent />
 			{children}
+			<ToastContainer
+				position="top-center"
+				autoClose={3000}
+				closeOnClick
+				pauseOnHover
+				transition={Slide}
+			/>
 		</div>
 	);
 }

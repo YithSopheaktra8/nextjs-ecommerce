@@ -1,7 +1,8 @@
-
+/* eslint-disable @next/next/no-img-element */
+"use client";
 import { IMAGE_PLACEHOLDER } from "@/constants/constants";
 import { ProductType } from "@/utils/types/ProductType";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 
 export default function ProductCardDetailComponent({
@@ -12,147 +13,198 @@ export default function ProductCardDetailComponent({
 	price,
 	seller,
 }: ProductType) {
+	const [rotate, setRotate] = useState(false);
+	const [count, setCount] = useState(0);
+
+	const addCount = () => {
+		setCount((prev) => prev + 1);
+	};
+
+	const minusCount = () => {
+		if (count > 0) {
+			setCount((prev) => prev - 1);
+		}
+	};
 	return (
-		<section className="text-gray-700 body-font overflow-hidden bg-white">
-			<div className="container px-5 py-24 mx-auto">
-				<div className="lg:w-4/5 mx-auto flex flex-wrap">
-					<Image
-						alt="ecommerce"
-						className="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200"
-						src={image ? image : IMAGE_PLACEHOLDER}
-						width={500}
-						height={500}
-					/>
-					<div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-						<h2 className="text-sm title-font text-gray-500 tracking-widest">
-							BRAND NAME
-						</h2>
-						<h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-							{name ? name : "No name"}
-						</h1>
-						<div className="flex mb-4">
-							<span className="flex items-center">
-								<svg
-									fill="currentColor"
-									stroke="currentColor"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth="2"
-									className="w-4 h-4 text-red-500"
-									viewBox="0 0 24 24">
-									<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-								</svg>
-								<svg
-									fill="currentColor"
-									stroke="currentColor"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth="2"
-									className="w-4 h-4 text-red-500"
-									viewBox="0 0 24 24">
-									<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-								</svg>
-								<svg
-									fill="currentColor"
-									stroke="currentColor"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth="2"
-									className="w-4 h-4 text-red-500"
-									viewBox="0 0 24 24">
-									<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-								</svg>
-								<svg
-									fill="currentColor"
-									stroke="currentColor"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth="2"
-									className="w-4 h-4 text-red-500"
-									viewBox="0 0 24 24">
-									<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-								</svg>
-								<svg
-									fill="none"
-									stroke="currentColor"
-									strokeLinecap="round"
-									strokeLinejoin="round"
-									strokeWidth="2"
-									className="w-4 h-4 text-red-500"
-									viewBox="0 0 24 24">
-									<path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-								</svg>
-								<span className="text-gray-600 ml-3">
-									4 Reviews
-								</span>
-							</span>
-							<span className="flex ml-3 pl-3 py-2 border-l-2 border-gray-200">
-								<a className="text-gray-500">
-									<svg
-										fill="currentColor"
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										strokeWidth="2"
-										className="w-5 h-5"
-										viewBox="0 0 24 24">
-										<path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-									</svg>
-								</a>
-								<a className="ml-2 text-gray-500">
-									<svg
-										fill="currentColor"
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										strokeWidth="2"
-										className="w-5 h-5"
-										viewBox="0 0 24 24">
-										<path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-									</svg>
-								</a>
-								<a className="ml-2 text-gray-500">
-									<svg
-										fill="currentColor"
-										strokeLinecap="round"
-										strokeLinejoin="round"
-										strokeWidth="2"
-										className="w-5 h-5"
-										viewBox="0 0 24 24">
-										<path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
-									</svg>
-								</a>
-							</span>
+		<div className="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4 ">
+			<div className="flex justify-center items-center lg:flex-row flex-col gap-8">
+				{/* <!-- Description Div --> */}
+
+				<div className="  w-full sm:w-96 md:w-8/12 lg:w-6/12 items-center">
+					<p className=" focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 font-normal text-base leading-4 text-gray-600">
+						{category}
+					</p>
+					<h2 className="font-semibold lg:text-4xl text-3xl lg:leading-9 leading-7 text-gray-800 mt-4">
+						{name}
+					</h2>
+
+					<div className=" flex flex-row justify-between  mt-5">
+						<div className=" flex flex-row space-x-3">
+							<svg
+								className=" cursor-pointer"
+								width="20"
+								height="21"
+								viewBox="0 0 20 21"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M15.5598 20C15.3998 20.0006 15.2421 19.9629 15.0998 19.89L9.99976 17.22L4.89976 19.89C4.73416 19.977 4.54744 20.0159 4.36084 20.0022C4.17424 19.9884 3.99524 19.9226 3.84419 19.8122C3.69314 19.7017 3.5761 19.5511 3.50638 19.3775C3.43665 19.2039 3.41704 19.0142 3.44976 18.83L4.44976 13.2L0.329763 9.19996C0.20122 9.07168 0.110034 8.91083 0.0659903 8.73465C0.0219465 8.55848 0.0267076 8.37363 0.0797626 8.19996C0.137723 8.02223 0.244339 7.86431 0.387513 7.74412C0.530687 7.62392 0.704685 7.54627 0.889763 7.51996L6.58976 6.68996L9.09976 1.55996C9.18165 1.39089 9.3095 1.2483 9.46867 1.14853C9.62785 1.04876 9.81191 0.99585 9.99976 0.99585C10.1876 0.99585 10.3717 1.04876 10.5309 1.14853C10.69 1.2483 10.8179 1.39089 10.8998 1.55996L13.4398 6.67996L19.1398 7.50996C19.3248 7.53627 19.4988 7.61392 19.642 7.73412C19.7852 7.85431 19.8918 8.01223 19.9498 8.18996C20.0028 8.36363 20.0076 8.54848 19.9635 8.72465C19.9195 8.90083 19.8283 9.06168 19.6998 9.18996L15.5798 13.19L16.5798 18.82C16.6155 19.0074 16.5968 19.2012 16.5259 19.3784C16.455 19.5556 16.3349 19.7088 16.1798 19.82C15.9987 19.9469 15.7806 20.0102 15.5598 20Z"
+									fill="#1F2937"
+								/>
+							</svg>
+							<svg
+								className=" cursor-pointer"
+								width="20"
+								height="21"
+								viewBox="0 0 20 21"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M15.5598 20C15.3998 20.0006 15.2421 19.9629 15.0998 19.89L9.99976 17.22L4.89976 19.89C4.73416 19.977 4.54744 20.0159 4.36084 20.0022C4.17424 19.9884 3.99524 19.9226 3.84419 19.8122C3.69314 19.7017 3.5761 19.5511 3.50638 19.3775C3.43665 19.2039 3.41704 19.0142 3.44976 18.83L4.44976 13.2L0.329763 9.19996C0.20122 9.07168 0.110034 8.91083 0.0659903 8.73465C0.0219465 8.55848 0.0267076 8.37363 0.0797626 8.19996C0.137723 8.02223 0.244339 7.86431 0.387513 7.74412C0.530687 7.62392 0.704685 7.54627 0.889763 7.51996L6.58976 6.68996L9.09976 1.55996C9.18165 1.39089 9.3095 1.2483 9.46867 1.14853C9.62785 1.04876 9.81191 0.99585 9.99976 0.99585C10.1876 0.99585 10.3717 1.04876 10.5309 1.14853C10.69 1.2483 10.8179 1.39089 10.8998 1.55996L13.4398 6.67996L19.1398 7.50996C19.3248 7.53627 19.4988 7.61392 19.642 7.73412C19.7852 7.85431 19.8918 8.01223 19.9498 8.18996C20.0028 8.36363 20.0076 8.54848 19.9635 8.72465C19.9195 8.90083 19.8283 9.06168 19.6998 9.18996L15.5798 13.19L16.5798 18.82C16.6155 19.0074 16.5968 19.2012 16.5259 19.3784C16.455 19.5556 16.3349 19.7088 16.1798 19.82C15.9987 19.9469 15.7806 20.0102 15.5598 20Z"
+									fill="#1F2937"
+								/>
+							</svg>
+							<svg
+								className=" cursor-pointer"
+								width="20"
+								height="21"
+								viewBox="0 0 20 21"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M15.5598 20C15.3998 20.0006 15.2421 19.9629 15.0998 19.89L9.99976 17.22L4.89976 19.89C4.73416 19.977 4.54744 20.0159 4.36084 20.0022C4.17424 19.9884 3.99524 19.9226 3.84419 19.8122C3.69314 19.7017 3.5761 19.5511 3.50638 19.3775C3.43665 19.2039 3.41704 19.0142 3.44976 18.83L4.44976 13.2L0.329763 9.19996C0.20122 9.07168 0.110034 8.91083 0.0659903 8.73465C0.0219465 8.55848 0.0267076 8.37363 0.0797626 8.19996C0.137723 8.02223 0.244339 7.86431 0.387513 7.74412C0.530687 7.62392 0.704685 7.54627 0.889763 7.51996L6.58976 6.68996L9.09976 1.55996C9.18165 1.39089 9.3095 1.2483 9.46867 1.14853C9.62785 1.04876 9.81191 0.99585 9.99976 0.99585C10.1876 0.99585 10.3717 1.04876 10.5309 1.14853C10.69 1.2483 10.8179 1.39089 10.8998 1.55996L13.4398 6.67996L19.1398 7.50996C19.3248 7.53627 19.4988 7.61392 19.642 7.73412C19.7852 7.85431 19.8918 8.01223 19.9498 8.18996C20.0028 8.36363 20.0076 8.54848 19.9635 8.72465C19.9195 8.90083 19.8283 9.06168 19.6998 9.18996L15.5798 13.19L16.5798 18.82C16.6155 19.0074 16.5968 19.2012 16.5259 19.3784C16.455 19.5556 16.3349 19.7088 16.1798 19.82C15.9987 19.9469 15.7806 20.0102 15.5598 20Z"
+									fill="#1F2937"
+								/>
+							</svg>
+							<svg
+								className=" cursor-pointer"
+								width="20"
+								height="21"
+								viewBox="0 0 20 21"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M15.5598 20C15.3998 20.0006 15.2421 19.9629 15.0998 19.89L9.99976 17.22L4.89976 19.89C4.73416 19.977 4.54744 20.0159 4.36084 20.0022C4.17424 19.9884 3.99524 19.9226 3.84419 19.8122C3.69314 19.7017 3.5761 19.5511 3.50638 19.3775C3.43665 19.2039 3.41704 19.0142 3.44976 18.83L4.44976 13.2L0.329763 9.19996C0.20122 9.07168 0.110034 8.91083 0.0659903 8.73465C0.0219465 8.55848 0.0267076 8.37363 0.0797626 8.19996C0.137723 8.02223 0.244339 7.86431 0.387513 7.74412C0.530687 7.62392 0.704685 7.54627 0.889763 7.51996L6.58976 6.68996L9.09976 1.55996C9.18165 1.39089 9.3095 1.2483 9.46867 1.14853C9.62785 1.04876 9.81191 0.99585 9.99976 0.99585C10.1876 0.99585 10.3717 1.04876 10.5309 1.14853C10.69 1.2483 10.8179 1.39089 10.8998 1.55996L13.4398 6.67996L19.1398 7.50996C19.3248 7.53627 19.4988 7.61392 19.642 7.73412C19.7852 7.85431 19.8918 8.01223 19.9498 8.18996C20.0028 8.36363 20.0076 8.54848 19.9635 8.72465C19.9195 8.90083 19.8283 9.06168 19.6998 9.18996L15.5798 13.19L16.5798 18.82C16.6155 19.0074 16.5968 19.2012 16.5259 19.3784C16.455 19.5556 16.3349 19.7088 16.1798 19.82C15.9987 19.9469 15.7806 20.0102 15.5598 20Z"
+									fill="#1F2937"
+								/>
+							</svg>
+							<svg
+								className=" cursor-pointer"
+								width="20"
+								height="21"
+								viewBox="0 0 20 21"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M15.5598 20C15.3998 20.0006 15.2421 19.9629 15.0998 19.89L9.99976 17.22L4.89976 19.89C4.73416 19.977 4.54744 20.0159 4.36084 20.0022C4.17424 19.9884 3.99524 19.9226 3.84419 19.8122C3.69314 19.7017 3.5761 19.5511 3.50638 19.3775C3.43665 19.2039 3.41704 19.0142 3.44976 18.83L4.44976 13.2L0.329763 9.19996C0.20122 9.07168 0.110034 8.91083 0.0659903 8.73465C0.0219465 8.55848 0.0267076 8.37363 0.0797626 8.19996C0.137723 8.02223 0.244339 7.86431 0.387513 7.74412C0.530687 7.62392 0.704685 7.54627 0.889763 7.51996L6.58976 6.68996L9.09976 1.55996C9.18165 1.39089 9.3095 1.2483 9.46867 1.14853C9.62785 1.04876 9.81191 0.99585 9.99976 0.99585C10.1876 0.99585 10.3717 1.04876 10.5309 1.14853C10.69 1.2483 10.8179 1.39089 10.8998 1.55996L13.4398 6.67996L19.1398 7.50996C19.3248 7.53627 19.4988 7.61392 19.642 7.73412C19.7852 7.85431 19.8918 8.01223 19.9498 8.18996C20.0028 8.36363 20.0076 8.54848 19.9635 8.72465C19.9195 8.90083 19.8283 9.06168 19.6998 9.18996L15.5798 13.19L16.5798 18.82C16.6155 19.0074 16.5968 19.2012 16.5259 19.3784C16.455 19.5556 16.3349 19.7088 16.1798 19.82C15.9987 19.9469 15.7806 20.0102 15.5598 20ZM9.99976 15.1C10.1601 15.0959 10.3186 15.1338 10.4598 15.21L14.2298 17.21L13.5098 13C13.4818 12.8392 13.4936 12.6741 13.5442 12.5189C13.5947 12.3638 13.6825 12.2234 13.7998 12.11L16.7998 9.17996L12.5998 8.55996C12.4457 8.52895 12.3012 8.46209 12.1778 8.3648C12.0545 8.2675 11.9558 8.14251 11.8898 7.99996L9.99976 4.24996L8.10976 7.99996C8.03741 8.14366 7.93145 8.26779 7.80089 8.3618C7.67032 8.45581 7.51899 8.51692 7.35976 8.53996L3.15976 9.15996L6.15976 12.09C6.27704 12.2034 6.36478 12.3438 6.41533 12.4989C6.46588 12.6541 6.4777 12.8192 6.44976 12.98L5.72976 17.14L9.49976 15.14C9.65951 15.0806 9.83261 15.0667 9.99976 15.1Z"
+									fill="#1F2937"
+								/>
+							</svg>
 						</div>
-						<p className="leading-relaxed">
-							{desc ? desc : "No description"}
+						<p className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 font-normal text-base leading-4 text-gray-700 hover:underline hover:text-gray-800 duration-100 cursor-pointer">
+							22 reviews
 						</p>
-						<div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
-							<div className="flex text-xl font-semibold">
-								Seller : {seller ? seller : "No seller"}
+					</div>
+
+					<p className=" font-normal text-base leading-6 text-gray-600 mt-7">
+						{desc ? "" : "No description"}
+					</p>
+					<p className=" font-semibold lg:text-2xl text-xl lg:leading-6 leading-5 mt-6 ">
+						$ {price}
+					</p>
+
+					<div className="lg:mt-11 mt-10">
+						<div className="flex flex-row justify-between">
+							<p className=" font-medium text-base leading-4 text-gray-600">
+								Select quantity
+							</p>
+							<div className="flex">
+								<span
+									onClick={minusCount}
+									className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer border border-gray-300 border-r-0 w-7 h-7 flex items-center justify-center pb-1">
+									-
+								</span>
+								<input
+									id="counter"
+									aria-label="input"
+									className="border border-gray-300 h-full text-center w-14 pb-1"
+									type="text"
+									value={count}
+									onChange={(e) => e.target.value}
+								/>
+								<span
+									onClick={addCount}
+									className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer border border-gray-300 border-l-0 w-7 h-7 flex items-center justify-center pb-1 ">
+									+
+								</span>
 							</div>
-							
 						</div>
-						<div className="flex">
-							<span className="title-font font-medium text-2xl text-gray-900">
-								${price ? price : "No price"}
-							</span>
-							<button className="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
-								Add to Cart
-							</button>
-							<button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
-								<svg
-									fill="currentColor"
+						<hr className=" bg-gray-200 w-full my-2" />
+						<div className=" flex flex-row justify-between items-center mt-4">
+							<p className="font-medium text-base leading-4 text-gray-600">
+								Dimensions
+							</p>
+							<svg
+								onClick={() => setRotate(!rotate)}
+								id="rotateSVG"
+								className={
+									"focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 cursor-pointer transform " +
+									(rotate ? "rotate-180" : "rotate-0")
+								}
+								width="10"
+								height="6"
+								viewBox="0 0 10 6"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg">
+								<path
+									d="M9 1L5 5L1 1"
+									stroke="#4B5563"
+									strokeWidth="1.25"
 									strokeLinecap="round"
 									strokeLinejoin="round"
-									strokeWidth="2"
-									className="w-5 h-5"
-									viewBox="0 0 24 24">
-									<path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
-								</svg>
-							</button>
+								/>
+							</svg>
+						</div>
+						<hr className=" bg-gray-200 w-full mt-4" />
+					</div>
+
+					<button className="focus:outline-none focus:ring-2 hover:bg-black focus:ring-offset-2 focus:ring-gray-800 font-medium text-base leading-4 text-white bg-gray-800 w-full py-5 lg:mt-12 mt-6">
+						Add to shopping bag
+					</button>
+				</div>
+
+				{/* <!-- Preview Images Div For larger Screen--> */}
+
+				<div className=" w-full sm:w-96 md:w-8/12  lg:w-6/12 flex lg:flex-row flex-col lg:gap-8 sm:gap-6 gap-4">
+					<div className=" w-full lg:w-8/12 bg-gray-100 flex justify-center items-center">
+						<img
+							src={image}
+							alt={name}
+							className="w-full h-full object-cover"
+						/>
+					</div>
+					<div className=" w-full lg:w-4/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-6">
+						<div className="bg-gray-100 flex justify-center items-center py-4">
+							<img
+								src={image}
+								alt={name}
+							/>
+						</div>
+						<div className="bg-gray-100 flex justify-center items-center py-4">
+							<img
+								src={image}
+								alt={name}
+							/>
+						</div>
+						<div className="bg-gray-100 flex justify-center items-center py-4">
+							<img
+								src={image}
+								alt={name}
+							/>
 						</div>
 					</div>
 				</div>
-			</div>
-		</section>
+			</div>					
+		</div>
 	);
 }

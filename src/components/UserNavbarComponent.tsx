@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
@@ -10,7 +9,6 @@ import Image from "next/image";
 export default function UserNavbarComponent() {
 	const router = useRouter();
 	const pathName = usePathname();
-
 
 	if (pathName === "/dashboard") {
 		return <AdminNavbarComponent />;
@@ -24,10 +22,10 @@ export default function UserNavbarComponent() {
 						src="/icons/icons.png"
 						className="mr-3 h-6 sm:h-9"
 						alt="KhStore Logo"
-						width={100}
-						height={100}
+						width={80}
+						height={150}
 					/>
-					<span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white"></span>
+					<span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">KhStore</span>
 				</Navbar.Brand>
 				<div className="flex md:order-2">
 					<button
@@ -40,13 +38,19 @@ export default function UserNavbarComponent() {
 					<Navbar.Toggle />
 				</div>
 				<Navbar.Collapse>
-					<Navbar.Link as={Link} href="/" active={pathName === '/'} >
+					<Navbar.Link as={Link} href="/" active={pathName === "/"}>
 						<p className="text-lg">Home</p>
 					</Navbar.Link>
-					<Navbar.Link as={Link} href="/about" active={pathName === '/about'}>
+					<Navbar.Link
+						as={Link}
+						href="/about"
+						active={pathName === "/about"}>
 						<p className="text-lg">About</p>
 					</Navbar.Link>
-					<Navbar.Link as={Link} href="/policy" active={pathName === '/policy'}>
+					<Navbar.Link
+						as={Link}
+						href="/policy"
+						active={pathName === "/policy"}>
 						<p className="text-lg">Policy</p>
 					</Navbar.Link>
 				</Navbar.Collapse>

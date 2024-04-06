@@ -4,6 +4,7 @@ import { BASE_URL } from "@/constants/constants";
 import { ProductType } from "@/utils/types/ProductType";
 import ProductCardDetailComponent from "@/components/ProductCardDetailComponent";
 import { Metadata, ResolvingMetadata } from "next";
+import MoreProductComponent from "@/components/MoreProductComponent";
 
 async function getProduct(params: string) {
 	const response = await fetch(`${BASE_URL}products/${params}`);
@@ -42,6 +43,7 @@ export default async function page({ params }: Props) {
 	return (
 		<div className="">
 			<ProductCardDetailComponent {...product} />
+			<MoreProductComponent />
 		</div>
 	);
 }

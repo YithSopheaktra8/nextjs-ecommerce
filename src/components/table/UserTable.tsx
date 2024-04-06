@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
 import {
@@ -20,6 +21,7 @@ import { redirect, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import DataTable, { TableColumn } from "react-data-table-component";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
+import { toast } from "react-toastify";
 
 export default function UserTable() {
 	const router = useRouter();
@@ -34,6 +36,8 @@ export default function UserTable() {
 		useState<ProductType | null>(null);
 	const [openEditModal, setOpenEditModal] = useState(false);
 	const [imageData, setImageData] = useState<File | null>(null);
+	const [currentPage, setCurrentPage] = useState<number>(1);
+	const [totalPages, setTotalPages] = useState<number>();
 
 	const handleView = (product: ProductType) => {
 		setProductDetails(product);
@@ -48,6 +52,14 @@ export default function UserTable() {
 	const handleEdit = (product: ProductType) => {
 		setEditProductDetails(product);
 		setOpenEditModal(true);
+	};
+
+	const handleNextPage = () => {
+		setCurrentPage((prevPage) => prevPage + 1);
+	};
+
+	const handlePrevPage = () => {
+		setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
 	};
 
 	const columnsData: TableColumn<ProductType>[] = [
@@ -127,7 +139,7 @@ export default function UserTable() {
 	}
 
 	const handleUpdate = async () => {
-		console.log(productDetails)
+		console.log(productDetails);
 		const productId = editProductDetails?.id;
 
 		const myHeaders = new Headers();
@@ -201,18 +213,39 @@ export default function UserTable() {
 		}
 	};
 
+	async function fetchData() {
+		const response = await fetch(
+			`${BASE_URL}products/?page=${currentPage}&page_size=5`
+		);
+		const data = await response.json();
+		setTotalPages(data.total);
+		setProductList(data.results);
+	}
+
 	useEffect(() => {
-		async function fetchData() {
-			const response = await fetch(`${BASE_URL}products/`);
-			const data = await response.json();
-			setProductList(data.results);
-		}
 		fetchData();
-	}, [productList]);
+	}, [currentPage]);
 
 	return (
 		<div className="mt-10">
 			<DataTable columns={columnsData} data={productList} />
+			<section className="mt-20 mb-10 md:my-20">
+				<div className="mt-4 flex justify-center">
+					{currentPage > 1 && (
+						<button
+							onClick={handlePrevPage}
+							className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-l">
+							Previous
+						</button>
+					)}
+					<p className="flex items-center mx-5 text-lg">{currentPage} of {Math.ceil(totalPages as number / 5)}</p>
+					<button
+						onClick={handleNextPage}
+						className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-r">
+						Next Page
+					</button>
+				</div>
+			</section>
 
 			<Modal
 				dismissible
@@ -267,6 +300,7 @@ export default function UserTable() {
 									setOpenDeleteModal(false);
 									deleteProduct(productId);
 									window.location.reload();
+									toast.success("Product Deleted");
 								}}>
 								{"Yes, I'm sure"}
 							</Button>
@@ -411,7 +445,8 @@ export default function UserTable() {
 								if (file) {
 									const reader = new FileReader();
 									reader.onload = (event) => {
-										const imageDataUrl = event.target?.result;
+										const imageDataUrl =
+											event.target?.result;
 										setEditProductDetails((prevState) => ({
 											...prevState,
 											image: imageDataUrl as string, // Cast imageDataUrl to string
@@ -455,6 +490,9 @@ export default function UserTable() {
 							handleUpdate();
 							router.push("/dashboard");
 							setOpenEditModal(false);
+							toast.success("Product Updated", {
+								closeOnClick: true,
+							});
 						}}>
 						Update
 					</button>
