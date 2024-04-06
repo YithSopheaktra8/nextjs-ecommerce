@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function about() {
 	return (
-		<div className="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4">
+		<main className="2xl:container 2xl:mx-auto lg:py-16 lg:px-20 md:py-12 md:px-6 py-9 px-4">
 			<div className="lg:w-10/12 w-full">
 				<p className="font-normal text-sm leading-3 text-blue-700 dark:text-indigo-500 hover:text-indigo-800 cursor-pointer">
 					About
@@ -281,6 +281,6 @@ export default function about() {
 					</div>
 				</div>
 			</div>
-		</div>
+		</main>
 	);
 }

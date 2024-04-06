@@ -37,7 +37,7 @@ export default function Home() {
 	};
 
 	return (
-		<>
+		<main>
 			<CarouselComponent />
 			<section className="py-12 bg-white sm:py-16 lg:pt-20">
 				<div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
@@ -713,6 +713,6 @@ export default function Home() {
 					</div>
 				</div>
 			</div>
-		</>
+		</main>
 	);
 }

@@ -41,9 +41,9 @@ export default async function page({ params }: Props) {
 	const product: ProductType = await getProduct(params.id);
 
 	return (
-		<div className="">
+		<main className="">
 			<ProductCardDetailComponent {...product} />
 			<MoreProductComponent />
-		</div>
+		</main>
 	);
 }

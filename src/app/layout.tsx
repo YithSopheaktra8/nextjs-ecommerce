@@ -29,7 +29,6 @@ export const metadata: Metadata = {
 		siteName: "KhStore",
 		countryName: "Cambodia",
 		images: "https://store.istad.co/media/icon_images/ecommerce.png",
-		
 	},
 };
 
@@ -42,10 +41,14 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={roboto.className}>
 				<link rel="icon" href="/icons/icons.png" sizes="2" />
-				<UserNavbarComponent />
+				<header>
+					<UserNavbarComponent />
+				</header>
 				<Suspense fallback={<Loading />}>{children}</Suspense>
 				<ScrollToTopButton />
-				<FooterComponent />
+				<footer>
+					<FooterComponent />
+				</footer>
 			</body>
 		</html>
 	);
