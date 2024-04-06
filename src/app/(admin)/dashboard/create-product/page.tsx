@@ -4,11 +4,8 @@
 import { ACCESS_TOKEN, BASE_URL } from "@/constants/constants";
 import axios from "axios";
 import {
-	Button,
-	Checkbox,
 	FileInput,
 	Label,
-	Select,
 	Textarea,
 	TextInput,
 } from "flowbite-react";
@@ -47,7 +44,7 @@ export default function CreateProduct() {
 	myHeaders.append("Content-Type", "application/json");
 	myHeaders.append(
 		"Authorization",
-		"Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzE0MzE5MzkzLCJpYXQiOjE3MTIxNTkzOTMsImp0aSI6IjRiOTQ5OTBiNWEyYzQwYWY4MTYzNjgyNjIwY2RkOGZjIiwidXNlcl9pZCI6NX0.O3xNaye1Q66woZdJoAlBVfaDMp9wJoXz7_GdBJaPMnw"
+		`Bearer ${ACCESS_TOKEN}`
 	);
 	myHeaders.append(
 		"Cookie",
@@ -69,11 +66,12 @@ export default function CreateProduct() {
 				Authorization: `Bearer ${ACCESS_TOKEN}`,
 			},
 			body: formdata,
-			
 		};
 
-		const imageUrl = await fetch("https://store.istad.co/api/file/product/", requestOptions)
-			.then((response) => response.json())
+		const imageUrl = await fetch(
+			"https://store.istad.co/api/file/product/",
+			requestOptions
+		).then((response) => response.json())
 			.then((result) => result.image)
 			.catch((error) => console.error(error));
 		try {
@@ -89,16 +87,14 @@ export default function CreateProduct() {
 				quantity: productQuantity,
 			};
 
-			// Send formData to your API endpoint
 			console.log(formData);
 			fetch(`${BASE_URL}products/`, {
 				method: "POST",
 				body: JSON.stringify(formData),
 				headers: myHeaders,
-			})
-				.catch((error) => {
-					console.error("Error:", error);
-				});
+			}).catch((error) => {
+				console.error("Error:", error);
+			});
 		} catch (error) {
 			console.error("Error uploading image:", error);
 		}
@@ -184,8 +180,7 @@ export default function CreateProduct() {
 				<button
 					className="bg-blue-500 text-white p-3 rounded-xl"
 					type="submit"
-					onClick={() => router.push("/dashboard")}
-					>
+					onClick={() => router.push("/dashboard")}>
 					Create New
 				</button>
 			</form>

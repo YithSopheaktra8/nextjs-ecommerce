@@ -7,7 +7,7 @@ const ScrollToTopButton = () => {
 
 	useEffect(() => {
 		const toggleVisibility = () => {
-			setIsVisible(window.scrollY > window.innerHeight / 2); // Show button when scrolled halfway down the viewport
+			setIsVisible(window.scrollY > window.innerHeight / 5); // Show button when scrolled halfway down the viewport
 		};
 
 		window.addEventListener("scroll", toggleVisibility);

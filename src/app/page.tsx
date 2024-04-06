@@ -84,7 +84,7 @@ export default function Home() {
 								price={product.price}
 								id={0}
 								seller={product.seller}
-								category={0}
+								category={""}
 								desc={product.desc}
 								quantity={0}
 							/>
