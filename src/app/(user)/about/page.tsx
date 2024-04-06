@@ -1,6 +1,13 @@
 
 import React from "react";
 import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "KhStore ecommerce about us",
+	description:
+		"We are here to make great experience accessible and delightfull for everyone",
+};
 
 export default function about() {
 	return (

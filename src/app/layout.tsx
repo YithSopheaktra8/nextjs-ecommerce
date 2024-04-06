@@ -14,8 +14,22 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-	title: "KhStore",
-	description: "khmer ecommerce website",
+	title: "KhStore ecommerce website",
+	description:
+		"khmer ecommerce website for shopping online in cambodia with free delivery and cash on delivery payment method for all products and services in cambodia and khmer language support for all users in cambodia and khmer people around the world to shop online in cambodia",
+	openGraph: {
+		title: "KhStore ecommerce website",
+		description:
+			"khmer ecommerce website for shopping online in cambodia with free delivery and cash on delivery payment method for all products and services in cambodia and khmer language support for all users in cambodia and khmer people around the world to shop online in cambodia",
+		type: "website",
+		locale: "en_US",
+		url: "https://khstore.sen-quiz.tech",
+		emails: "yithsopheaktra18@gmail.com",
+		phoneNumbers: "+855 96 717 4832",
+		siteName: "KhStore",
+		countryName: "Cambodia",
+		images: "https://store.istad.co/media/icon_images/ecommerce.png",
+	},
 };
 
 export default function RootLayout({
