@@ -41,12 +41,13 @@ export default function Home() {
 			<section className="py-12 bg-white sm:py-16 lg:pt-20">
 				<div className="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
 					<div className="max-w-md mx-auto text-center">
-						<h2 className="text-2xl font-bold text-gray-900 sm:text-3xl uppercase">
+						<h1 className="text-2xl font-bold text-gray-900 sm:text-3xl uppercase">
 							Our featured Product
-						</h2>
+						</h1>
 						<p className="mt-4 text-base font-normal leading-7 text-gray-600">
 							Stay connected, stay fit, and stay stylish with the
-							TechProX Smartwatch. Engineered with cutting-edge
+							TechProX Smartwatch. Engineered with cutting-edge tech
+							and a sleek design, this smartwatch is the perfect.
 						</p>
 					</div>
 					<FeatureProductComponent />
@@ -62,7 +63,7 @@ export default function Home() {
 						<p className="mt-4 text-base font-normal leading-7 text-gray-600">
 							category caters to different user preferences,
 							ranging from speed and security to customization and
-							developer tools.
+							developer tools to ensure that you have the best.
 						</p>
 					</div>
 					<BrandComponent />

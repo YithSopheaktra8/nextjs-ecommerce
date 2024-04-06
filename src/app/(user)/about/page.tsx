@@ -16,10 +16,10 @@ export default function about() {
 				<p className="font-normal text-sm leading-3 text-blue-700 dark:text-indigo-500 hover:text-indigo-800 cursor-pointer">
 					About
 				</p>
-				<h2 className="xl:w-8/12 lg:w-10/12 w-full font-bold text-gray-800 dark:text-white lg:text-4xl text-3xl lg:leading-10 leading-9 mt-2">
+				<h1 className="xl:w-8/12 lg:w-10/12 w-full font-bold text-gray-800 dark:text-white lg:text-4xl text-3xl lg:leading-10 leading-9 mt-2">
 					We are here to make great experience accessible and
 					delightfull for everyone
-				</h2>
+				</h1>
 				<p className="font-normal text-base leading-6 text-gray-600 dark:text-white mt-6">
 					At KhStore, we believe in more than just transactions; we
 					believe in building relationships. Our journey began with a

@@ -4,7 +4,7 @@ import "./globals.css";
 import UserNavbarComponent from "@/components/UserNavbarComponent";
 import { Suspense } from "react";
 import Loading from "./loading";
-import FooterComponent from "@/components/FooterComponent";
+import FooterComponent from "@/components/FooterComponent";x
 import ScrollToTopButton from "@/components/ScrollTopComponent";
 
 const roboto = Roboto({
@@ -16,11 +16,11 @@ const roboto = Roboto({
 export const metadata: Metadata = {
 	title: "KhStore ecommerce website",
 	description:
-		"khmer ecommerce website for shopping online in cambodia with free delivery and cash on delivery payment method for all products and services in cambodia and khmer language support for all users in cambodia and khmer people around the world to shop online in cambodia",
+		"khmer ecommerce website for shopping online in cambodia with free delivery and cash on  payment method for all products and services in cambodia.",
 	openGraph: {
 		title: "KhStore ecommerce website",
 		description:
-			"khmer ecommerce website for shopping online in cambodia with free delivery and cash on delivery payment method for all products and services in cambodia and khmer language support for all users in cambodia and khmer people around the world to shop online in cambodia",
+			"khmer ecommerce website for shopping online in cambodia with free delivery and cash on  payment method for all products and services in cambodia.",
 		type: "website",
 		locale: "en_US",
 		url: "https://khstore.sen-quiz.tech",
@@ -29,6 +29,7 @@ export const metadata: Metadata = {
 		siteName: "KhStore",
 		countryName: "Cambodia",
 		images: "https://store.istad.co/media/icon_images/ecommerce.png",
+		
 	},
 };
 
