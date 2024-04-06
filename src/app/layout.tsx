@@ -4,7 +4,7 @@ import "./globals.css";
 import UserNavbarComponent from "@/components/UserNavbarComponent";
 import { Suspense } from "react";
 import Loading from "./loading";
-import FooterComponent from "@/components/FooterComponent";x
+import FooterComponent from "@/components/FooterComponent";
 import ScrollToTopButton from "@/components/ScrollTopComponent";
 
 const roboto = Roboto({
