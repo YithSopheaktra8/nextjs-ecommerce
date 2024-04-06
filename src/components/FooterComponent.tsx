@@ -41,7 +41,7 @@ export default function FooterComponent() {
 								</p>
 							</div>
 						</div>
-						<div className="space-y-2 text-sm">
+						<address className="space-y-2 text-sm">
 							<p className="text-base font-bold tracking-wide text-gray-900">
 								Contacts
 							</p>
@@ -77,7 +77,7 @@ export default function FooterComponent() {
 									Phnon Penh, Cambodia
 								</a>
 							</div>
-						</div>
+						</address>
 						<div>
 							<span className="text-base font-bold tracking-wide text-gray-900">
 								Social
