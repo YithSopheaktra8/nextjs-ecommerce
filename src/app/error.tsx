@@ -3,7 +3,7 @@ import React from "react";
 
 export default function Error() {
 	return (
-		<main>
+		<main className="grid place-content-center h-screen">
 			<div className="text-center">
 				<h1 className="mb-4 text-6xl font-semibold text-red-500">
 					404

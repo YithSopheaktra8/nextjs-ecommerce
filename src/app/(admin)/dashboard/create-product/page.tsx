@@ -1,15 +1,8 @@
-
-
 "use client";
 
 import { ACCESS_TOKEN, BASE_URL } from "@/constants/constants";
 import axios from "axios";
-import {
-	FileInput,
-	Label,
-	Textarea,
-	TextInput,
-} from "flowbite-react";
+import { FileInput, Label, Textarea, TextInput } from "flowbite-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Image from "next/image";
@@ -19,10 +12,13 @@ export default function CreateProduct() {
 	const [productPrice, setProductPrice] = useState("");
 	const [productQuantity, setProductQuantity] = useState("");
 	const [productDescription, setProductDescription] = useState("");
+	const [productCategory, setProductCategory] = useState("");
 	const [imagePreview, setImagePreview] = useState<string | null>(null);
 	const [imageData, setImageData] = useState<File | null>(null);
 	const router = useRouter();
-	const notify = (e : string) => {e}
+	const notify = (e: string) => {
+		e;
+	};
 
 	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const file = event.target.files?.[0];
@@ -45,10 +41,7 @@ export default function CreateProduct() {
 
 	const myHeaders = new Headers();
 	myHeaders.append("Content-Type", "application/json");
-	myHeaders.append(
-		"Authorization",
-		`Bearer ${ACCESS_TOKEN}`
-	);
+	myHeaders.append("Authorization", `Bearer ${ACCESS_TOKEN}`);
 	myHeaders.append(
 		"Cookie",
 		"csrftoken=UafcJBTYw7ngeP1Ov1FF91N7OXlKVb4Wv8keKsf7fMiqDLZZLD52Z5fr4NPp9X50; sessionid=8r4cx104gr3c4t6tasqsfzts7jvkcov9"
@@ -74,13 +67,14 @@ export default function CreateProduct() {
 		const imageUrl = await fetch(
 			"https://store.istad.co/api/file/product/",
 			requestOptions
-		).then((response) => response.json())
+		)
+			.then((response) => response.json())
 			.then((result) => result.image)
 			.catch((error) => console.error(error));
 		try {
 			const formData = {
 				category: {
-					name: "running shoes",
+					name: productCategory,
 					icon: "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1693342954-rincon-3-64ee5ca62e001.jpg?crop=1xw:1xh;center,top&resize=980:*",
 				},
 				name: productName,
@@ -145,6 +139,18 @@ export default function CreateProduct() {
 						value={productQuantity}
 						onChange={(e) => setProductQuantity(e.target.value)}
 					/>
+
+					<div className="mb-2 block mt-5">
+						<Label htmlFor="category" value="Product Category" />
+					</div>
+					<TextInput
+						id="category"
+						type="text"
+						placeholder="accessories"
+						required
+						value={productCategory}
+						onChange={(e) => setProductCategory(e.target.value)}
+					/>
 				</div>
 				<div>
 					<div className="mb-2 block mt-5">
@@ -186,8 +192,8 @@ export default function CreateProduct() {
 					className="bg-blue-500 text-white p-3 rounded-xl"
 					type="submit"
 					onClick={() => {
-						router.push("/dashboard")
-						notify("Product created successfully")
+						router.push("/dashboard");
+						notify("Product created successfully");
 					}}>
 					Create New
 				</button>

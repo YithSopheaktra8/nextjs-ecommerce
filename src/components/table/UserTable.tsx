@@ -77,6 +77,10 @@ export default function UserTable() {
 			selector: (row) => row.price,
 		},
 		{
+			name: "category",
+			selector: (row) => row.category,
+		},
+		{
 			name: "Seller",
 			selector: (row) => row.seller,
 		},
@@ -224,10 +228,10 @@ export default function UserTable() {
 
 	useEffect(() => {
 		fetchData();
-	}, [currentPage]);
+	}, [currentPage,]);
 
 	return (
-		<main className="mt-10 m-auto">
+		<main className="mt-10 w-full">
 			<DataTable columns={columnsData} data={productList} />
 			<section className="mt-20 mb-10 md:my-20">
 				<div className="mt-4 flex justify-center">

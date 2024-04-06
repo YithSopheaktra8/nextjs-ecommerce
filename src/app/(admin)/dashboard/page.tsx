@@ -3,7 +3,7 @@ import React from "react";
 
 export default function dashboard() {
 	return (
-		<div>
+		<div className="w-screen">
 			<UserTable />
 		</div>
 	);
