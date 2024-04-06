@@ -20,8 +20,8 @@ export default function ProductCardComponent({
 						src={image}
 						alt="Converse sneakers"
 						draggable="false"
-						width={500}
-						height={500}
+						width={250}
+						height={250}
 					/>
 				</div>
 
