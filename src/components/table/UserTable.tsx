@@ -227,7 +227,7 @@ export default function UserTable() {
 	}, [currentPage]);
 
 	return (
-		<div className="mt-10">
+		<div className="mt-10 m-auto">
 			<DataTable columns={columnsData} data={productList} />
 			<section className="mt-20 mb-10 md:my-20">
 				<div className="mt-4 flex justify-center">

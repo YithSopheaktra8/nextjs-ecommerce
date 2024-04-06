@@ -184,21 +184,21 @@ export default function ProductCardDetailComponent({
 						/>
 					</div>
 					<div className=" w-full lg:w-4/12 grid lg:grid-cols-1 sm:grid-cols-4 grid-cols-2 gap-6">
-						<div className="bg-gray-100 flex justify-center items-center py-4">
+						<div className="bg-gray-100 h-[250px] flex justify-center items-center py-4">
 							<img
 								src={image}
 								alt={name}
 								className="w-full h-full object-contain"
 							/>
 						</div>
-						<div className="bg-gray-100 flex justify-center items-center py-4">
+						<div className="bg-gray-100 flex h-[250px] justify-center items-center py-4">
 							<img
 								src={image}
 								alt={name}
 								className="w-full h-full object-contain"
 							/>
 						</div>
-						<div className="bg-gray-100 flex justify-center items-center py-4">
+						<div className="bg-gray-100 flex h-[250px] justify-center items-center py-4">
 							<img
 								src={image}
 								alt={name}
