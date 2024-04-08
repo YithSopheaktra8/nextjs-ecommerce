@@ -13,8 +13,10 @@ export default function CreateProduct() {
 	const [productQuantity, setProductQuantity] = useState("");
 	const [productDescription, setProductDescription] = useState("");
 	const [productCategory, setProductCategory] = useState("");
-	const [imagePreview, setImagePreview] = useState<string | null>(null);
+	const [imagePreview, setImagePreview] = useState<string | null>();
 	const [imageData, setImageData] = useState<File | null>(null);
+	const [categoryIcon, setCategoryIcon] = useState<File | null>(null);
+	const [categoryIconPreview, setCategoryIconPreview] = useState<string | null>()
 	const router = useRouter();
 	const notify = (e: string) => {
 		e;
@@ -29,6 +31,25 @@ export default function CreateProduct() {
 			const reader = new FileReader();
 			reader.onloadend = () => {
 				setImagePreview(reader.result as string);
+			};
+			reader.readAsDataURL(file);
+			// Update the FormData object with the selected file
+
+			const formdata = new FormData();
+			formdata.append("name", "ISTAD Store Poster");
+			formdata.append("image", file, file.name);
+		}
+	};
+
+	const handleFileIconChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const file = event.target.files?.[0];
+		if (event.target.files && event.target.files[0]) {
+			setCategoryIcon(event.target.files[0]);
+		}
+		if (file) {
+			const reader = new FileReader();
+			reader.onloadend = () => {
+				setCategoryIconPreview(reader.result as string);
 			};
 			reader.readAsDataURL(file);
 			// Update the FormData object with the selected file
@@ -56,6 +77,20 @@ export default function CreateProduct() {
 			formdata.append("image", imageData, imageData.name);
 		}
 
+		const formdataIcon = new FormData();
+		formdataIcon.append("name", "ISTAD Store Poster");
+		if (categoryIcon) {
+			formdataIcon.append("image", categoryIcon, categoryIcon.name);
+		}
+
+		const requestOptionsIcon = {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${ACCESS_TOKEN}`,
+			},
+			body: formdataIcon,
+		}
+
 		const requestOptions = {
 			method: "POST",
 			headers: {
@@ -71,11 +106,18 @@ export default function CreateProduct() {
 			.then((response) => response.json())
 			.then((result) => result.image)
 			.catch((error) => console.error(error));
+
+		const categoryIconUrl = await fetch(
+			"https://store.istad.co/api/file/icon/",
+			requestOptionsIcon
+		).then((response) => response.json())
+			.then((result) => result.image);
+
 		try {
 			const formData = {
 				category: {
 					name: productCategory,
-					icon: "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1693342954-rincon-3-64ee5ca62e001.jpg?crop=1xw:1xh;center,top&resize=980:*",
+					icon: categoryIconUrl,
 				},
 				name: productName,
 				desc: productDescription,
@@ -151,6 +193,23 @@ export default function CreateProduct() {
 						value={productCategory}
 						onChange={(e) => setProductCategory(e.target.value)}
 					/>
+					<FileInput
+						id="file"
+						helperText="Product Images"
+						onChange={handleFileIconChange}
+						name="file"
+					/>
+					{categoryIconPreview && (
+						<div className="mt-5">
+							<Image
+								src={categoryIconPreview}
+								alt="Preview"
+								className="max-w-[150px] rounded-md"
+								width={50}
+								height={50}
+							/>
+						</div>
+					)}
 				</div>
 				<div>
 					<div className="mb-2 block mt-5">
@@ -193,7 +252,6 @@ export default function CreateProduct() {
 					type="submit"
 					onClick={() => {
 						router.push("/dashboard");
-						notify("Product created successfully");
 					}}>
 					Create New
 				</button>

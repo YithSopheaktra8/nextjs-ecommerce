@@ -24,7 +24,8 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { toast } from "react-toastify";
 
 export default function UserTable() {
-	const router = useRouter();
+	const route = useRouter();
+	const [categoryName, setCategoryName] = useState("");
 	const [productList, setProductList] = useState<ProductType[]>([]);
 	const [openModal, setOpenModal] = useState(false);
 	const [openDeleteModal, setOpenDeleteModal] = useState(false);
@@ -32,12 +33,19 @@ export default function UserTable() {
 		null
 	);
 	const [productId, setProductId] = useState(Number);
-	const [editProductDetails, setEditProductDetails] =
-		useState<ProductType | null>(null);
+	const [editProductDetails, setEditProductDetails] = useState<ProductType>(
+		{} as ProductType
+	);
 	const [openEditModal, setOpenEditModal] = useState(false);
-	const [imageData, setImageData] = useState<File | null>(null);
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [totalPages, setTotalPages] = useState<number>();
+	const [categoryIcon, setCategoryIcon] = useState<File | null>(null);
+	const [categoryIconPreview, setCategoryIconPreview] = useState<
+		string | null
+	>();
+
+	const [imagePreview, setImagePreview] = useState<string | null>();
+	const [imageData, setImageData] = useState<File | null>(null);
 
 	const handleView = (product: ProductType) => {
 		setProductDetails(product);
@@ -51,6 +59,7 @@ export default function UserTable() {
 
 	const handleEdit = (product: ProductType) => {
 		setEditProductDetails(product);
+		console.log(product);
 		setOpenEditModal(true);
 	};
 
@@ -78,7 +87,7 @@ export default function UserTable() {
 		},
 		{
 			name: "category",
-			selector: (row) => row.category,
+			selector: (row) => row.category ,
 		},
 		{
 			name: "Seller",
@@ -142,8 +151,47 @@ export default function UserTable() {
 		});
 	}
 
+	const handleFileIconChange = (
+		event: React.ChangeEvent<HTMLInputElement>
+	) => {
+		const file = event.target.files?.[0];
+		if (event.target.files && event.target.files[0]) {
+			setCategoryIcon(event.target.files[0]);
+		}
+		if (file) {
+			const reader = new FileReader();
+			reader.onloadend = () => {
+				setCategoryIconPreview(reader.result as string);
+			};
+			reader.readAsDataURL(file);
+			// Update the FormData object with the selected file
+
+			const formdata = new FormData();
+			formdata.append("name", "ISTAD Store Poster");
+			formdata.append("image", file, file.name);
+		}
+	};
+
+	const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const file = event.target.files?.[0];
+		if (event.target.files && event.target.files[0]) {
+			setImageData(event.target.files[0]);
+		}
+		if (file) {
+			const reader = new FileReader();
+			reader.onloadend = () => {
+				setImagePreview(reader.result as string);
+			};
+			reader.readAsDataURL(file);
+			// Update the FormData object with the selected file
+
+			const formdata = new FormData();
+			formdata.append("name", "ISTAD Store Poster");
+			formdata.append("image", file, file.name);
+		}
+	};
+
 	const handleUpdate = async () => {
-		console.log(productDetails);
 		const productId = editProductDetails?.id;
 
 		const myHeaders = new Headers();
@@ -176,18 +224,44 @@ export default function UserTable() {
 			.then((result) => result.image)
 			.catch((error) => console.error(error));
 
+		// const categoryIcon = await fetch(
+		// 	"https://store.istad.co/api/file/icons/",
+		// )
+		const formdataIcon = new FormData();
+		formdataIcon.append("name", "ISTAD Store Poster");
+		if (categoryIcon) {
+			formdataIcon.append("image", categoryIcon, categoryIcon.name);
+		}
+
+		const requestOptionsIcon = {
+			method: "POST",
+			headers: {
+				Authorization: `Bearer ${ACCESS_TOKEN}`,
+			},
+			body: formdataIcon,
+		};
+
+		const categoryIconUrl = await fetch(
+			"https://store.istad.co/api/file/icon/",
+			requestOptionsIcon
+		)
+			.then((response) => response.json())
+			.then((result) => result.image);
+
 		const formData = {
 			id: editProductDetails?.id,
 			category: {
-				name: editProductDetails?.category,
-				icon: "https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1693342954-rincon-3-64ee5ca62e001.jpg?crop=1xw:1xh;center,top&resize=980:*",
+				name: editProductDetails.category.name,
+				icon: categoryIconUrl,
 			},
 			name: editProductDetails?.name,
 			desc: editProductDetails?.desc,
-			image: imageUrl && productDetails?.image,
+			image: imageUrl,
 			price: editProductDetails?.price,
 			quantity: editProductDetails?.quantity,
 		};
+
+		console.log(formData);
 
 		try {
 			const response = await fetch(`${BASE_URL}products/${productId}/`, {
@@ -224,14 +298,15 @@ export default function UserTable() {
 		const data = await response.json();
 		setTotalPages(data.total);
 		setProductList(data.results);
+		setCategoryName(data.results[0].category.name);
 	}
 
 	useEffect(() => {
 		fetchData();
-	}, [currentPage,]);
+	}, [currentPage]);
 
 	return (
-		<main className="mt-10 w-full">
+		<main className="w-full">
 			<DataTable columns={columnsData} data={productList} />
 			<section className="mt-20 mb-10 md:my-20">
 				<div className="mt-4 flex justify-center">
@@ -242,7 +317,9 @@ export default function UserTable() {
 							Previous
 						</button>
 					)}
-					<p className="flex items-center mx-5 text-lg">{currentPage} of {Math.ceil(totalPages as number / 5)}</p>
+					<p className="flex items-center mx-5 text-lg">
+						{currentPage} of {Math.ceil((totalPages as number) / 5)}
+					</p>
 					<button
 						onClick={handleNextPage}
 						className="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-r">
@@ -337,21 +414,28 @@ export default function UserTable() {
 							<TextInput
 								id="name"
 								type="text"
-								required
 								value={editProductDetails?.name || ""}
 								onChange={(e) =>
-									setEditProductDetails((prevState) => ({
-										...prevState,
-										name: e.target.value,
-										id: prevState?.id || 0,
-										seller: prevState?.seller || "",
-										category:
-											String(prevState?.category) || "", // Ensure category is always a string
-										desc: prevState?.desc || "",
-										image: prevState?.image || "",
-										price: prevState?.price || "",
-										quantity: prevState?.quantity || 0,
-									}))
+									setEditProductDetails(
+										(prevState: ProductType) => ({
+											...prevState,
+											name: e.target.value,
+											id: prevState?.id || 0,
+											seller: prevState?.seller || "",
+											category: {
+												name:
+													prevState?.category?.name ||
+													"",
+												icon:
+													prevState?.category?.icon ||
+													"", // Add the 'icon' property
+											},
+											desc: prevState?.desc || "",
+											image: prevState?.image || "",
+											quantity: prevState?.quantity || 0,
+											price: prevState?.price || "",
+										})
+									)
 								}
 							/>
 							<div className="mb-2 block mt-5">
@@ -361,142 +445,184 @@ export default function UserTable() {
 								id="price"
 								type="text"
 								placeholder="$500"
-								required
 								value={editProductDetails?.price || ""}
 								onChange={(e) =>
-									setEditProductDetails((prevState) => ({
-										...prevState,
-										price: e.target.value,
-										id: prevState?.id || 0,
-										seller: prevState?.seller || "",
-										category:
-											prevState?.category.toString() ||
-											"", // Convert category to string
-										name: prevState?.name || "",
-										desc: prevState?.desc || "",
-										image: prevState?.image || "",
-										quantity: prevState?.quantity || 0,
-									}))
+									setEditProductDetails(
+										(prevState: ProductType) => ({
+											...prevState,
+											price: e.target.value,
+											id: prevState?.id || 0,
+											seller: prevState?.seller || "",
+											category: {
+												name:
+													prevState?.category?.name ||
+													"",
+												icon:
+													prevState?.category?.icon ||
+													"", // Add the 'icon' property
+											},
+											desc: prevState?.desc || "",
+											image: prevState?.image || "",
+											quantity: prevState?.quantity || 0,
+											name: prevState?.name || "",
+										})
+									)
 								}
 							/>
 
 							<div className="mb-2 block mt-5">
 								<Label
-									htmlFor="category"
-									value="Product category"
+									htmlFor="price"
+									value="Product Quantity"
 								/>
 							</div>
 							<TextInput
 								id="quantity"
 								type="text"
-								placeholder="20"
-								required
-								value={editProductDetails?.category || 0}
+								placeholder="$500"
+								value={editProductDetails?.quantity || ""}
 								onChange={(e) =>
-									setEditProductDetails((prevState) => ({
-										...prevState,
-										category: e.target.value,
-										id: prevState?.id || 0,
-										seller: prevState?.seller || "",
-										quantity: prevState?.quantity || 0,
-										name: prevState?.name || "",
-										desc: prevState?.desc || "",
-										image: prevState?.image || "",
-										price: prevState?.price || "",
-									}))
+									setEditProductDetails(
+										(prevState: ProductType) => ({
+											...prevState,
+											quantity: parseInt(e.target.value),
+											id: prevState?.id || 0,
+											seller: prevState?.seller || "",
+											category: {
+												name:
+													prevState?.category?.name ||
+													"",
+												icon:
+													prevState?.category?.icon ||
+													"", // Add the 'icon' property
+											},
+											desc: prevState?.desc || "",
+											image: prevState?.image || "",
+											price: prevState?.price || "",
+											name: prevState?.name || "",
+										})
+									)
 								}
 							/>
-						</div>
-						<div>
+
 							<div className="mb-2 block mt-5">
 								<Label
-									htmlFor="description"
-									value="Product Description"
+									htmlFor="price"
+									value="Product category"
 								/>
 							</div>
-							<Textarea
-								className="h-[150px]"
-								id="description"
-								placeholder="Air Jordan 1 is a sneaker designed by Peter Moore, Michael Jordan's first signature shoe. It was created for the 1984-85 season and later banned by the NBA for breaking uniform regulations."
-								required
-								value={editProductDetails?.desc || ""}
+							<TextInput
+								id="category"
+								type="text"
+								placeholder="accessories"
+								value={editProductDetails?.category?.name || ""}
 								onChange={(e) =>
-									setEditProductDetails((prevState) => ({
+									setEditProductDetails(
+										(prevState: ProductType) => ({
+											...prevState,
+											category: {
+												name: e.target.value,
+												icon:
+													prevState?.category.icon ||
+													"",
+											},
+											id: prevState?.id || 0,
+											seller: prevState?.seller || "",
+											desc: prevState?.desc || "",
+											image: prevState?.image || "",
+											quantity: prevState?.quantity || 0,
+											price: prevState?.price || "",
+											name: prevState?.name || "",
+										})
+									)
+								}
+							/>
+							<FileInput
+								id="file"
+								helperText="Category Icons"
+								onChange={handleFileIconChange}
+								name="file"
+								className="mt-5"
+							/>
+							{categoryIconPreview && (
+								<div className="mt-5">
+									<Image
+										src={categoryIconPreview}
+										alt="Preview"
+										className="max-w-[150px] rounded-md"
+										width={50}
+										height={50}
+									/>
+								</div>
+							)}
+						</div>
+
+						<div className="mb-2 block mt-5">
+							<Label
+								htmlFor="price"
+								value="Product Description"
+							/>
+						</div>
+						<Textarea
+							id="description"
+							placeholder="Air Jordan 1 is a sneaker designed by Peter Moore, Michael Jordan's first signature shoe. It was created for the 1984-85 season and later banned by the NBA for breaking uniform regulations."
+							className="h-[150px]"
+							value={editProductDetails?.desc || ""}
+							onChange={(e) =>
+								setEditProductDetails(
+									(prevState: ProductType) => ({
 										...prevState,
 										desc: e.target.value,
 										id: prevState?.id || 0,
 										seller: prevState?.seller || "",
-										category:
-											prevState?.category.toString() ||
-											"", // Convert category to string
-										name: prevState?.name || "",
+										category: {
+											name:
+												prevState?.category?.name || "",
+											icon:
+												prevState?.category?.icon || "",
+										},
 										image: prevState?.image || "",
-										price: prevState?.price || "",
 										quantity: prevState?.quantity || 0,
-									}))
-								}
-							/>
-						</div>
+										price: prevState?.price || "",
+										name: prevState?.name || "",
+									})
+								)
+							}
+						/>
+
 						<div className="mb-2 block mt-5">
 							<Label htmlFor="file" value="Upload file" />
 						</div>
 						<FileInput
-							id="file"
-							helperText="Product Images"
-							onChange={(e) => {
-								const file = e.target.files?.[0];
-								setImageData(file || null);
-								if (file) {
-									const reader = new FileReader();
-									reader.onload = (event) => {
-										const imageDataUrl =
-											event.target?.result;
-										setEditProductDetails((prevState) => ({
-											...prevState,
-											image: imageDataUrl as string, // Cast imageDataUrl to string
-											id: prevState?.id || 0,
-											name: prevState?.name || "",
-											seller: prevState?.seller || "",
-											category:
-												prevState?.category.toString() ||
-												"", // Cast category to string
-											price: prevState?.price || "",
-											quantity: prevState?.quantity || 0,
-											desc: prevState?.desc || "",
-										}));
-									};
-									reader.readAsDataURL(file);
-								}
-							}}
-							name="file"
-						/>
+						id="file"
+						helperText="Product Images"
+						onChange={handleFileChange}
+						name="file"
+					/>
 						<div className="mb-2 block mt-5">
 							<Label htmlFor="image" value="Product Image" />
 						</div>
 
-						{/* Display image preview */}
-						{editProductDetails && editProductDetails.image && (
+						{imagePreview && (
+						<div className="mt-5">
 							<Image
-								src={editProductDetails.image}
+								src={imagePreview}
 								alt="Preview"
-								className="mb-4 rounded-lg"
-								style={{ maxWidth: "100%", height: "auto" }}
-								width={500}
-								height={500}
+								className="max-w-[150px] rounded-md"
+								width={150}
+								height={150}
 							/>
-						)}
+						</div>
+					)}
 					</form>
 				</Modal.Body>
 				<Modal.Footer>
 					<button
 						color="primary"
 						onClick={() => {
+							route.push("/dashboard");
 							handleUpdate();
-							router.push("/dashboard");
 							setOpenEditModal(false);
-							toast.success("Product Updated", {
-								closeOnClick: true,
-							});
 						}}>
 						Update
 					</button>
