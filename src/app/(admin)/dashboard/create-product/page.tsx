@@ -193,9 +193,12 @@ export default function CreateProduct() {
 						value={productCategory}
 						onChange={(e) => setProductCategory(e.target.value)}
 					/>
+					<div className="mb-2 block mt-5">
+						<Label htmlFor="category" value="Product Category Icon" />
+					</div>
 					<FileInput
 						id="file"
-						helperText="Product Images"
+						helperText="Product category icon"
 						onChange={handleFileIconChange}
 						name="file"
 					/>
