@@ -32,7 +32,7 @@ export default function ProductCardDetailComponent({
 
 				<div className="  w-full sm:w-96 md:w-8/12 lg:w-6/12 items-center">
 					<p className=" focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 font-normal text-base leading-4 text-gray-600">
-						{category}
+						{category.name}
 					</p>
 					<h2 className="font-semibold lg:text-4xl text-3xl lg:leading-9 leading-7  mt-4">
 						{name}
