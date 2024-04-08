@@ -249,9 +249,9 @@ export default function UserTable() {
 			.then((result) => result.image);
 
 		const formData = {
-			id: editProductDetails?.id,
+			id: editProductDetails?.id ,
 			category: {
-				name: editProductDetails.category.name,
+				name: editProductDetails.category.name || "",
 				icon: categoryIconUrl,
 			},
 			name: editProductDetails?.name,
@@ -398,14 +398,13 @@ export default function UserTable() {
 			{/* Edit product modal */}
 			<Modal
 				show={openEditModal}
-				size="md"
+				size="lg"
 				onClose={() => setOpenEditModal(false)}
 				popup>
-				<Modal.Header>Edit Product</Modal.Header>
-				<Modal.Body>
+				<Modal.Body >
 					<form method="POST">
 						<div>
-							<h2 className="text-center text-2xl">
+							<h2 className="text-center text-2xl mt-10">
 								Update Product
 							</h2>
 							<div className="mb-2 block mt-5">
